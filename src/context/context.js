@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from 'react';
+import React, { useState, useEffect, Children, useContext } from 'react';
 import mockUser from './mockData.js/mockUser';
 import mockRepos from './mockData.js/mockRepos';
 import mockFollowers from './mockData.js/mockFollowers';
@@ -8,7 +8,16 @@ const rootUrl = 'https://api.github.com';
 const GithubContext = React.createContext()
 
 const GithubProvider = ({children})=>{
-    return (<GithubContext.Provider value ="hello">{children}</GithubContext.Provider>)
+    const [user, setUSer] = useState(mockUser)
+    const [repo, setRepo] = useState(mockRepos)
+    const [followers, setFollowers] = useState(mockFollowers)
+    return (<GithubContext.Provider value ={{user, repo, followers}}>{children}</GithubContext.Provider>)
 }
+
+
+export const useGlobalContext = ()=>{
+  return   useContext(GithubContext)
+}
+
 
 export {GithubContext, GithubProvider}

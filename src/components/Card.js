@@ -1,9 +1,27 @@
 import React from 'react';
-import { GithubContext } from '../context/context';
+import { GithubContext, useGlobalContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 const Card = () => {
-  return <h2>card component</h2>;
+  const {user} = useGlobalContext()
+  console.log(user);
+  return (
+    <article>
+      <Wrapper>
+        <header>
+        <img src={user.avatar_url} alt={user.login}/>
+        <div>
+
+        <h4>{user.login}</h4>
+        <p>@{user.twitter_username? user.twitter_username : "nill"}</p>
+        </div>
+        <a href={user.html_url}> follow </a>
+        </header>
+        <p className="bio">{user.bio}</p>
+         
+      </Wrapper>
+    </article>
+  );
 };
 const Wrapper = styled.article`
   background: var(--clr-white);

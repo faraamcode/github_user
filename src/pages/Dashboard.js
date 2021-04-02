@@ -1,12 +1,17 @@
 import React from 'react';
 import { Info, Repos, User, Search, Navbar } from '../components';
 import loadingImage from '../images/preloader.gif';
-import { GithubContext } from '../context/context';
+import { GithubContext, useGlobalContext } from '../context/context';
 const Dashboard = () => {
-  const data = React.useContext(GithubContext)
+  const data = useGlobalContext()
+  // console.log(data);
   return (
     <main>
-      <h2>Dashboard Page{data}</h2>
+      {/* <Navbar/> */}
+      {/* <Search/> */}
+      <Info/>
+      <User/>
+      {/* <Repos/> */}
     </main>
   );
 };

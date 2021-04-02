@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 const Error = () => {
 
   return <Wrapper>
+    <div className="container">
 
     <h2>error page</h2>
-    <Link to="/">
-    <button className="btn"> back home</button>
+    <Link to="/" className="btn">
+    back home
     </Link>
+    </div>
   </Wrapper>
 };
 const Wrapper = styled.section`

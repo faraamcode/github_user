@@ -1,11 +1,59 @@
 import React from 'react';
-import { GithubContext } from '../context/context';
+import { GithubContext, useGlobalContext } from '../context/context';
 import styled from 'styled-components';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
+
 const UserInfo = () => {
-  return <h2>user info component</h2>;
+  const {user } = useGlobalContext()
+const item = [
+  {
+    id : 1,
+    icon: <GoRepo className="icon"/>,
+    label: "public repo",
+    value : user.public_repos,
+    color : "yellow"
+  },
+  {
+    id : 2,
+    icon: <FiUserPlus className="icon"/>,
+    label: "followers",
+    value : user.followers,
+    color : "yellow"
+  },
+  {
+    id : 3,
+    icon: <FiUsers className="icon"/>,
+    label: "following",
+    value : user.following,
+    color : "yellow"
+  },
+  {
+    id : 4,
+    icon: <GoGist className="icon"/>,
+    label: "public gist",
+    value : user.public_gists,
+    color : "yellow"
+  },
+]
+  return (
+    <section className="section">
+     <Wrapper className="section-center">
+    {item.map((items)=>{
+      return (
+        <article className="item">
+          <span className={items.color}>{items.icon}</span>
+          <div>
+            <h3>{items.value}</h3>
+            <p>{items.label}</p>
+          </div>
+        </article>
+      )
+    })}
+     </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.section`
